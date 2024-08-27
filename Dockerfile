@@ -9,7 +9,7 @@ COPY pom.xml .
 COPY src ./src
 
 # Build the project and create the JAR file
-RUN mvn clean install 
+RUN mvn clean install
 #RUN mvn clean install -DskipTests
 
 # Second stage: Run the application
@@ -29,10 +29,14 @@ RUN chown appuser:appgroup /app/app.jar
 USER appuser
 
 # Expose the application port (if needed)
-EXPOSE 8085
+EXPOSE 8080
 
 # Command to run the application
 #CMD ["java", "-jar", "app.jar"]
-CMD ["java", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12345", "-Dcom.sun.management.jmxremote.local.only=false", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false", "-jar", "app.jar"]
-
+CMD ["java", "-Dcom.sun.management.jmxremote", \
+             "-Dcom.sun.management.jmxremote.port=12345", \
+             "-Dcom.sun.management.jmxremote.local.only=false", \
+             "-Dcom.sun.management.jmxremote.authenticate=false", \
+             "-Dcom.sun.management.jmxremote.ssl=false", \
+             "-jar", "app.jar"]
 
