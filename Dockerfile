@@ -32,5 +32,7 @@ USER appuser
 EXPOSE 8085
 
 # Command to run the application
-CMD ["java", "-jar", "app.jar"]
+#CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=12345", "-Dcom.sun.management.jmxremote.local.only=false", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false", "-jar", "app.jar"]
+
 
